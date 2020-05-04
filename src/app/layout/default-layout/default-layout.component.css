@@ -1,0 +1,7 @@
+body {
+  background-color: #EEEEEE;
+}
+.btn-menu-right {
+  box-shadow: inset 0 1px 0 #c9dae9, inset 0 0 40px 5px rgba(0, 0, 0, 0.3), 0 0 2px 1px rgba(0, 0, 0, 0.3);
+  border: 1px solid transparent;
+}
