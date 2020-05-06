@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { DefaultLayoutComponent } from './default-layout.component';
+import { WebsiteModule } from 'src/app/function-view/website/website.module';
 
 const PARTS = [
   DefaultLayoutComponent
@@ -9,7 +9,7 @@ const PARTS = [
 @NgModule({
   declarations: [...PARTS],
   imports: [
-    RouterModule,
+    WebsiteModule,
   ],
   entryComponents: [...PARTS],
   exports: [...PARTS],

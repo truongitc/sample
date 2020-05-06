@@ -11,7 +11,7 @@ const routes: Routes = [
     // children: [
     //   {
     //     path: '',
-    //     loadChildren: `src/app/function-view/website/app-website/app-website.module.ts#AppWebsiteModule`,
+    //     loadChildren: `src/app/function-view/website#WebsiteModule`,
     //     data: { reuse: true },
     //   },
     // ],

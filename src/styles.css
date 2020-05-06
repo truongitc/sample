@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+content-website img {
+  border-radius: 25px;
+}
+
+content-website article {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
