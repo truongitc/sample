@@ -20,6 +20,15 @@ export class ContentWebsiteComponent implements OnInit {
     "https://i.pinimg.com/564x/63/5a/b6/635ab6ed2759ea33321d0c4d8bac971e.jpg";
   private image6: any =
     "https://i.pinimg.com/564x/80/e4/19/80e41968e10fd627ecec2d73132a35dc.jpg";
+
+  top = 0;
+  left = 0;
+  currentColumn: number = 0;
+  leftColumnHeight = 0;
+  rightColumnHeight = 0;
+  index: number = 0;
+  loadedPostsIndex: number = 0;
+
   constructor() {}
 
   ngOnInit() {
@@ -33,5 +42,90 @@ export class ContentWebsiteComponent implements OnInit {
         { src: this.image6 }
       );
     }
+  }
+
+  public positionElement(post)
+  {
+    let value = "position: absolute; top: " + this.top + "px; left: " + this.left + "px";
+    post.setAttribute("style", value);
+
+    let positionInfo = post.getBoundingClientRect();
+    let index = post.getAttribute("data-index");
+
+    if (this.currentColumn == 0) {
+      this.leftColumnHeight += Math.abs(positionInfo.height)
+
+      if (this.rightColumnHeight < this.leftColumnHeight) {
+        this.currentColumn = 1;
+        this.left = positionInfo.right;
+        this.top = this.rightColumnHeight;
+      } else {
+        this.currentColumn = 0;
+        this.left = 0;
+        this.top = this.leftColumnHeight;
+      }
+    } else if (this.currentColumn == 1) {
+      this.rightColumnHeight += Math.abs(positionInfo.height)
+
+      if (this.rightColumnHeight < this.leftColumnHeight) {
+        this.currentColumn = 1;
+        this.top = this.rightColumnHeight;
+      } else {
+        this.currentColumn = 0;
+        this.left = 0;
+        this.top = this.leftColumnHeight;
+      }
+    }
+  }
+
+  public positionElements(isResized: boolean): void {
+    let cards = document.getElementsByClassName("dCard");
+    if (isResized) {
+      this.reset();
+    }
+    while (this.index < this.items.length) {
+      let card = Array.from(cards)[this.index];
+
+      let value = "width: 50%; position: absolute; top: " + this.top + "px; left: " + this.left + "px";
+      card.setAttribute("style", value);
+
+      let positionInfo = card.getBoundingClientRect();
+
+      if (this.currentColumn == 0) {
+        this.leftColumnHeight = Math.abs(positionInfo.bottom)
+
+        if (this.rightColumnHeight < this.leftColumnHeight) {
+          this.currentColumn = 1;
+          this.left = positionInfo.right;
+          this.top = this.rightColumnHeight;
+        } else {
+          this.currentColumn = 0;
+          this.left = 0;
+          this.top = this.leftColumnHeight;
+        }
+      }
+      else if (this.currentColumn == 1) {
+        this.rightColumnHeight = Math.abs(positionInfo.bottom)
+
+        if (this.rightColumnHeight < this.leftColumnHeight) {
+          this.currentColumn = 1;
+          this.top = this.rightColumnHeight;
+        } else {
+          this.currentColumn = 0;
+          this.left = 0;
+          this.top = this.leftColumnHeight;
+        }
+      }
+      this.index++;
+    }
+  }
+
+  private reset() {
+    this.top = 0;
+    this.left = 0;
+    this.leftColumnHeight = 0;
+    this.rightColumnHeight = 0;
+    this.currentColumn = 0;
+    this.index = 0;
   }
 }

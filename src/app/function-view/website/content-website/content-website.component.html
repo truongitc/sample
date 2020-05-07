@@ -1,7 +1,9 @@
 <div class="container-fluid">
-  <section class="row">
-    <article class="col-2" *ngFor="let item of items">
-      <img [src]="item.src" width="100%"/>
-    </article>
+  <section class="row" style="position: relative;">
+    <ng-container *ngFor="let item of items; let i = index">
+      <article class="col-2" #postDiv [attr.data-index]="i">
+        <img [src]="item.src" width="100%" (error)="positionElement(postDiv)" (load)="positionElement(postDiv)"/>
+      </article>
+    </ng-container>
   </section>
 </div>

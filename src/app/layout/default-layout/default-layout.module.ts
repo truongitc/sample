@@ -1,15 +1,23 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DefaultLayoutComponent } from './default-layout.component';
-import { WebsiteModule } from 'src/app/function-view/website/website.module';
+import { ContentWebsiteComponent } from 'src/app/function-view/website/content-website/content-website.component';
+import { HeaderWebsiteComponent } from 'src/app/function-view/website/header/header.component';
+import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'src/app/shared/button/button.module';
+import { TextInputModule } from 'src/app/shared/text-input/text-input.module';
 
 const PARTS = [
-  DefaultLayoutComponent
+  DefaultLayoutComponent,
+  HeaderWebsiteComponent,
+  ContentWebsiteComponent
 ];
 
 @NgModule({
   declarations: [...PARTS],
   imports: [
-    WebsiteModule,
+    CommonModule,
+    ButtonModule,
+    TextInputModule
   ],
   entryComponents: [...PARTS],
   exports: [...PARTS],

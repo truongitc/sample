@@ -7,6 +7,7 @@ import { AdminLayoutModule } from './layout/admin-layout/admin-layout.module';
 import { DefaultLayoutModule } from './layout/default-layout/default-layout.module';
 import { MasterLayoutModule } from './layout/master-layout/master-layout.module';
 import { DefaultLayoutComponent } from './layout/default-layout/default-layout.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { DefaultLayoutComponent } from './layout/default-layout/default-layout.c
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     DefaultLayoutModule,
     AdminLayoutModule,
     MasterLayoutModule,
